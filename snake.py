@@ -18,7 +18,7 @@ class cube(object):
     def move(self, dirnx, dirny):
         self.dirnx = dirnx
         self.dirny = dirny
-        self.pos(self.pos[0] + self.dirnx, self.pos[1] + self.dirny)
+        self.pos = (self.pos[0] + self.dirnx, self.pos[1] + self.dirny)
 
     def draw(self, surface, eyes=False):
         dis = self.width // self.rows
@@ -147,6 +147,7 @@ def main(snake):
     while flag:
         pygame.time.delay(30)
         clock.tick(10)
+        s.move()
         redrawWindow(win, rows, width, s)
     pass
 
