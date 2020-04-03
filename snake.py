@@ -105,7 +105,7 @@ class snake(object):
             self.body.append(cube((tail.pos[0]-1, tail.pos[1])))
         elif dx == -1 and dy == 0:
             self.body.append(cube((tail.pos[0]+1, tail.pos[1])))
-        elif dx == 0 and dy ==1:
+        elif dx == 0 and dy == 1:
             self.body.append(cube((tail.pos[0], tail.pos[1]-1)))
         elif dx == 0 and dy == -1:
             self.body.append(cube((tail.pos[0], tail.pos[1]+1)))
@@ -133,9 +133,10 @@ def drawGrid(width, rows, surface):
         pygame.draw.line(surface, (255, 255, 255), (0, y), (width, y))
 
 
-def redrawWindow(surface, rows, width, s):
+def redrawWindow(surface, rows, width, s, snack):
     surface.fill((0, 0, 0))
     s.draw(surface)
+    snack.draw(surface)
     drawGrid(width, rows, surface)
     pygame.display.update()
 
@@ -162,7 +163,7 @@ def main(snake):
     rows = 20
     win = pygame.display.set_mode((width, width))
     s = snake((255, 0, 0), (10, 10))
-    snack = cube(randomSnack(rows, s), color=(0,255,0))
+    snack = cube(randomSnack(rows, s), color=(0, 255, 0))
     flag = True
 
     clock = pygame.time.Clock()
@@ -173,8 +174,8 @@ def main(snake):
         s.move()
         if s.body[0].pos == snack.pos:
             s.addCube()
-            snack = cube(randomSnack(rows, s), color=(0,255,0))
-        redrawWindow(win, rows, width, s)
+            snack = cube(randomSnack(rows, s), color=(0, 255, 0))
+        redrawWindow(win, rows, width, s, snack)
     pass
 
 
